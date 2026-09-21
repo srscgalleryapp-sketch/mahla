@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>پنل مدیریت اپلیکیشن آموزشی</title>
+	 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="file/form_manager.css"> <!-- لینک به فایل CSS -->
+	<link rel="icon" href="file/images/srs.ico" type="image/x-icon">
+    
+</head>
+<body>
+<div class="container">
+        
+        
+        <iframe id="unique-siteFrame" class="unique-iframe" src="1/logo/index.html" title="نمایش سایت"></iframe>
+    </div>
+<button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+ <div id="sidebar">
+    <header>
+      <span>پنل مدیریت اپلیکیشن آموزشی</span>
+    </header>
+   <div class="content">
+   
+  
+	    <div class="content">
+      <div class="accordion">
+     
+
+
+<button type="button">
+    <i class="fas fa-user-graduate"></i>
+    <span>مدیریت اطلاعات دانشجویان</span>
+</button>
+
+
+
+        <div class="panel">
+		
+
+
+<div class="student-menu">
+
+    <!-- مخزن اسناد دانشجویان -->
+    <a href="https://drive.google.com/drive/folders/1q7Lvd9aMxnXEyNfxcw7LbqiCZJd_Q9_x"
+       target="_blank"
+       rel="noopener noreferrer">
+        <i class="fas fa-folder-open"></i>
+        <span>مخزن اسناد دانشجویان</span>
+    </a>
+
+
+    <!-- نمایش اسناد دانشجویان -->
+    <a href="#"
+       onclick="loadInIframe('manager_student/student viewer.html'); return false;">
+        <i class="fas fa-file-alt"></i>
+        <span>نمایش اسناد دانشجویان</span>
+    </a>
+
+
+    <!-- فرم ثبت نام دانشجویان -->
+    <a href="#"
+       onclick="loadInIframe('Sign Up/info.html'); return false;">
+        <i class="fas fa-user-plus"></i>
+        <span>فرم ثبت نام دانشجویان</span>
+    </a>
+
+
+    <!-- شیت ویرایش اطلاعات دانشجویان -->
+    <a href="#"
+       onclick="loadInIframe('https://docs.google.com/spreadsheets/d/1hmRL6u2wuye1BoUeOLr89U2JhV37kgQPvLk8gfD_hfY/edit?usp=sharing'); return false;">
+        <i class="fas fa-table"></i>
+        <span>شیت ویرایش اطلاعات دانشجویان</span>
+    </a>
+
+
+    <!-- مخزن کامل فایل های اپلیکیشن -->
+    <a href="https://drive.google.com/drive/folders/1aJ3umFjZScv-WwC4JNd_UV7X5yxO6F7r"
+       target="_blank"
+       rel="noopener noreferrer">
+        <i class="fas fa-database"></i>
+        <span>مخزن کامل فایل‌های اپلیکیشن</span>
+    </a>
+
+</div>
+
+
+
+
+		
+		 <input type="hidden" id="combinedText" name="combinedText">
+
+		
+		  
+        </div>
+		<div class="accordion">
+      
+<button type="button">
+    <i class="fas fa-chalkboard-teacher"></i>
+    <span>مدیریت کلاس درس</span>
+</button>
+
+
+        <div class="panel">
+         <!-- فیلد ورودی با متن ثابت -->
+<!-- فیلد ورودی با متن ثابت -->
+
+<div class="student-menu">
+
+    <!-- مخزن کلاس‌ها و دروس -->
+    <a href="https://drive.google.com/drive/folders/1eYe-xOEbswioQWlr8XHAi24JgN90aFI4"
+       target="_blank"
+       rel="noopener noreferrer">
+        <i class="fas fa-chalkboard"></i>
+        <span>مخزن کلاس‌ها و دروس</span>
+    </a>
+
+
+    <!-- پنل نمایش محتوای آموزشی -->
+    <a href="#"
+       onclick="loadInIframe('media/media viewer.html'); return false;">
+        <i class="fas fa-play-circle"></i>
+        <span>پنل نمایش محتوای آموزشی</span>
+    </a>
+
+
+    <!-- پنل مدیریت محتوای آموزشی -->
+    <a href="#"
+       onclick="loadInIframe('manager_Learning/manager_Learning.html'); return false;">
+        <i class="fas fa-tasks"></i>
+        <span>پنل مدیریت محتوای آموزشی</span>
+    </a>
+
+
+    <!-- شیت ویرایش محتوای کلاس‌های آموزشی -->
+    <a href="#"
+       onclick="loadInIframe('https://docs.google.com/spreadsheets/d/121XsI4TjZWB0mygSvKHKruFZ8K5xybJdOXHc5YKsjbE/edit?usp=sharing'); return false;">
+        <i class="fas fa-table"></i>
+        <span>شیت ویرایش محتوای کلاس‌های آموزشی</span>
+    </a>
+
+</div>
+
+
+
+	 
+        </div>
+      </div>
+	 
+	 
+	 		<div class="accordion">
+      
+<button type="button">
+    <i class="fas fa-sliders-h"></i>
+    <span>پیشرفته</span>
+</button>
+
+
+        <div class="panel">
+         <!-- فیلد ورودی با متن ثابت -->
+<!-- فیلد ورودی با متن ثابت -->
+
+<div class="student-menu">
+
+
+    <!-- پنل نمایش محتوای آموزشی -->
+  
+<a href="#"
+   onclick="loadInIframe('#'); return false;">
+    <i class="fas fa-graduation-cap"></i>
+    <span>ورود به اپلیکیشن آموزشی</span>
+</a>
+
+
+<a href="#"
+   onclick="loadInIframe('#'); return false;">
+    <i class="fas fa-user-check"></i>
+    <span>وضعیت دانشجویان</span>
+</a>
+
+<a href="#"
+   onclick="loadInIframe('#'); return false;">
+    <i class="fas fa-file-signature"></i>
+    <span>طراحی آزمون</span>
+</a>
+
+<a href="#"
+   onclick="loadInIframe('#'); return false;">
+    <i class="fas fa-robot"></i>
+    <span>دستیار هوش مصنوعی</span>
+</a>
+
+<a href="#"
+   onclick="loadInIframe('#'); return false;">
+    <i class="fas fa-file-contract"></i>
+    <span>عقد قرارداد آموزشی</span>
+</a>
+
+<a href="#"
+   onclick="loadInIframe('#'); return false;">
+    <i class="fas fa-comments"></i>
+    <span>پیام‌رسان شخصی</span>
+</a>
+
+
+
+</div>
+
+
+
+	 
+        </div>
+      </div>
+	  
+	  
+	  
+    </div>
+      </div>
+    </div>
+    </div>
+	
+    
+ <script src="file/form_manager.js" defer></script> <!-- لینک به فایل JavaScript -->
+</body>
+</html>
