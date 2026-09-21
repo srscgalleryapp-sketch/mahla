@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>learning panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="file/learning panel.css">
+ <link rel="icon" href="file/images/srs.ico" type="image/x-icon"> <!-- آیکون -->
+</head>
+<body class="bg-gray-100 animate-fadeIn">
+
+
+
+<header id="userHeader" class="hidden bg-white shadow-md px-4 py-3 flex items-center gap-4 md:justify-between flex-wrap">
+ 
+    <!-- دکمه منوی موبایل -->
+ <!-- دکمه منوی موبایل -->
+<button id="menuToggle" class="md:hidden absolute left-4 top-4 bg-white p-2 rounded shadow-lg z-40">
+  <i class="fas fa-bars text-xl"></i>
+</button>
+
+
+  <!-- سایدبار -->
+  <div id="sidebar" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg p-4 transform translate-x-full transition-transform duration-300 z-40 md:translate-x-0 md:relative md:w-auto md:h-auto md:shadow-none md:flex md:flex-row md:gap-4">
+  <div class="flex items-center gap-4">
+  <!-- عکس هنرجو -->
+    <iframe id="headerUserPhoto" class="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-blue-500" src=""></iframe>
+  <!-- نام هنرجو -->
+    <span id="headerUserName" class="font-semibold text-gray-800 text-lg md:text-xl"></span>
+    
+    
+  </div>
+ <button onclick="showTab('infoTab')" class="sidebar-button mb-2 md:mb-0">اطلاعات دانشجو</button>
+  <button onclick="showTab('coursesTab')" class="sidebar-button mb-2 md:mb-0">دوره‌های فعال</button>
+  <button onclick="showTab('statusTab')" class="sidebar-button">SRS_ai</button>
+  <button onclick="showTab('cooperationTab')" class="sidebar-button mb-2 md:mb-0">همکاری</button>
+  <button onclick="showTab('resourcesTab')" class="sidebar-button mb-2 md:mb-0">منابع اطلاعاتی</button>
+  <button onclick="showTab('portfolioTab')" class="sidebar-button mb-2 md:mb-0">پورتفولیو</button>
+  <button onclick="showTab('aiAssistantTab')" class="sidebar-button mb-2 md:mb-0">وضعیت آموزشی</button>
+  <button onclick="showTab('addonsTab')" class="sidebar-button mb-2 md:mb-0">افزونه‌های اختصاصی</button>
+
+</div>
+</header>
+
+
+
+
+<!-- فرم ورود -->
+<div id="loginForm">
+  <div id="loginBox">
+<h2 class="collab-title">
+  <img src="file/images/learning.ico" alt="." class="collab-icon">
+  پنل آموزشی
+</h2>
+
+
+
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+
+    <div id="captchaWrapper">
+      <span id="captchaCode"></span>
+      <input type="text" id="captchaInput" placeholder="Security code" />
+      <button onclick="generateCaptcha()">🔄</button>
+    </div>
+
+    <button type="button" onclick="login()">ورود</button>
+
+    <p id="loginMsg"></p>
+  </div>
+</div>
+
+
+  <!-- پنل کاربری -->
+ <div id="userPanel" class="container mx-auto px-4 py-6 hidden animate-fadeIn">
+
+<!-- تب اطلاعات دانشجوو -->
+<div id="infoTab" class="hidden">
+  <h2 class="btn-title mb-6">اطلاعات دانشجوو</h2>
+
+  <!-- کارت اطلاعات کاربر -->
+  <div class="bg-white shadow-md rounded-xl p-6 mb-6 flex flex-col md:flex-row items-start gap-6">
+    <!-- تصویر -->
+    <iframe id="userPhoto" class="rounded-xl border w-full md:w-64 h-48" src=""></iframe>
+
+    <!-- مشخصات -->
+    <div class="flex-1 space-y-2">
+      <div class="flex items-center gap-2 text-gray-700 text-lg">
+        <i class="fas fa-user text-blue-500"></i>
+        <strong>نام:</strong>
+        <span id="userName" class="font-medium text-gray-800"></span>
+      </div>
+      <div class="flex items-center gap-2 text-gray-700 text-lg">
+        <i class="fas fa-id-card text-green-500"></i>
+        <strong>کد ملی:</strong>
+        <span id="userNationalId" class="font-medium text-gray-800"></span>
+      </div>
+	  <div class="flex items-center gap-2 text-gray-700 text-lg">
+  <i class="fas fa-male text-yellow-500"></i>
+  <strong>نام پدر:</strong>
+  <span id="userFatherName" class="font-medium text-gray-800"></span>
+</div>
+
+      <div class="flex items-center gap-2 text-gray-700 text-lg">
+        <i class="fas fa-graduation-cap text-purple-500"></i>
+        <strong>سطح:</strong>
+        <span id="userLevel" class="font-medium text-gray-800"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- کارت قرارداد -->
+  <div class="bg-white shadow-md rounded-xl p-4">
+    <h3 class="btn-title mb-3 flex items-center gap-2">
+      <i class="fas fa-file-contract"></i> قرارداد هنرجو
+    </h3>
+    <iframe id="userContract" class="w-full border rounded-xl" height="400" src=""></iframe>
+  </div>
+</div>
+
+
+
+    <!-- تب دوره‌ها -->
+    <div id="coursesTab" class="hidden">
+  <h2 class="btn-title mb-4">دوره‌های فعال:</h2>
+  <div id="activeCoursesList" class="space-y-4">
+    <ul id="coursesUl" class="list-disc pr-5"></ul>
+  </div>
+</div>
+	
+	<!-- تب وضعیت آموزشی -->
+<div id="statusTab" class="hidden">
+  <div id="eduStatusMessage" class="hidden p-6 bg-yellow-50 border border-yellow-300 rounded text-center text-yellow-700">
+    <p class="text-lg font-semibold mb-2">دسترسی شما به وضعیت آموزشی محدود است</p>
+    <p class="text-sm mb-3">در این بخش می‌توانید نمودار پیشرفت، تحلیل سطح، گزارشات آموزشی و مسیر رشد خود را مشاهده کنید.</p>
+    <button onclick="upgradePanel()" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">ارتقاء پنل برای مشاهده وضعیت آموزشی</button>
+  </div>
+  <iframe id="eduStatusFrame" class="w-full border rounded" height="500" src=""></iframe>
+</div>
+
+
+  </div>
+
+   <script src="file/learning panel.js"></script>
+</body>
+</html>
+
