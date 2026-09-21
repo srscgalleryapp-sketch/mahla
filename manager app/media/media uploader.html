@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="file/media uploader.css"> <!-- لینک به فایل CSS -->
+   
+    <title>مدیریت فایل‌ها</title>
+    <base target="_top">
+	 
+</head>
+<body>
+<button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+  
+  <div id="sidebar">
+  <header>
+      <span> مدیریت محتوی پوشه ها_____</span>
+    </header>
+
+     <h2>بارگذاری محتوی</h2>
+    <input type="file" id="fileInput" multiple>
+
+    <button onclick="uploadFile()">بارگذاری</button>
+
+    <!-- بخش ایجاد پوشه -->
+    <h2>ایجاد پوشه جدید</h2>
+    <input type="text" id="folderNameInput" placeholder="نام پوشه">
+    <button onclick="createFolder()">ایجاد پوشه</button>
+</div>
+
+
+
+    <div id="editor-container">
+ <div id="editor">
+    <!-- مسیر جاری -->
+    <h3 id="currentPath">مسیر جاری: /</h3>
+
+    <!-- بخش مدیریت فایل‌ها -->
+    <button onclick="goBackFolder()">⬅️ برگشت</button>
+
+    <div id="fileList">در حال بارگذاری فایل‌ها...</div>
+	<!-- دکمه برای پیش‌نمایش و رفرش کردن آیفریم -->
+	</div>
+	<div id="preview">
+<button onclick="refreshIframe()">پیش‌نمایش</button>
+<h2>نمایش فایل‌های داخل پوشه</h2>
+<iframe id="driveIframe" 
+        src="https://drive.google.com/embeddedfolderview?id=1aJ3umFjZScv-WwC4JNd_UV7X5yxO6F7r#grid" 
+        width="100%" 
+        height="600px" 
+        frameborder="0" 
+        style="overflow:auto;">
+</iframe>
+</div>
+</div>
+ <script src="file/media uploader.js" defer></script> <!-- لینک به فایل JavaScript -->
+</body>
+</html>
