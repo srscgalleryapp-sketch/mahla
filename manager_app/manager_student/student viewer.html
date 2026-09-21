@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+   content="width=device-width, initial-scale=1.0">
+
+<title>فایل‌های دانشجویان</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100%;
+}
+
+body{
+
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    background:
+        #f3f5f8;
+
+    color:#1f2937;
+
+    overflow-x:hidden;
+
+}
+
+
+/* Header */
+
+.header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    width:100%;
+
+    padding:18px 25px;
+
+    background:
+        rgba(255,255,255,.95);
+
+    backdrop-filter:
+        blur(12px);
+
+    border-bottom:
+        1px solid #e5e7eb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.header-title{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+.header-info{
+
+    font-size:13px;
+
+    color:#6b7280;
+
+}
+
+
+/* Refresh Button */
+
+.refresh-btn{
+
+    border:none;
+
+    background:#111827;
+
+    color:white;
+
+    padding:11px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    transition:.2s;
+
+}
+
+.refresh-btn:hover{
+
+    background:#374151;
+
+    transform:translateY(-1px);
+
+}
+
+.refresh-btn:disabled{
+
+    opacity:.6;
+
+    cursor:wait;
+
+}
+
+
+/* Main */
+
+.container{
+
+    width:100%;
+
+    max-width:1600px;
+
+    margin:auto;
+
+    padding:25px;
+
+}
+
+
+/* Grid */
+
+.files-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fill,minmax(280px,1fr));
+
+    gap:20px;
+
+}
+
+
+/* Card */
+
+.file-card{
+
+    background:white;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.05);
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+
+}
+
+.file-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.10);
+
+}
+
+
+/* Card Header */
+
+.card-header{
+
+    padding:14px 16px;
+
+    border-bottom:
+        1px solid #edf0f3;
+
+    background:#fafafa;
+
+}
+
+.file-name{
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    line-height:1.7;
+
+    word-break:break-word;
+
+}
+
+
+/* Preview */
+
+.preview{
+
+    width:100%;
+
+    height:260px;
+
+    background:#eef1f5;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+}
+
+
+/* iframe */
+
+.preview iframe{
+
+    width:100%;
+
+    height:100%;
+
+    border:none;
+
+}
+
+
+/* Image */
+
+.preview img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    background:#eef1f5;
+
+}
+
+
+/* Generic File */
+
+.file-placeholder{
+
+    text-align:center;
+
+    color:#6b7280;
+
+    padding:20px;
+
+}
+
+.file-icon{
+
+    font-size:50px;
+
+    margin-bottom:10px;
+
+}
+
+
+/* Footer */
+
+.card-footer{
+
+    padding:14px 16px;
+
+    border-top:
+        1px solid #edf0f3;
+
+}
+
+.id-label{
+
+    font-size:11px;
+
+    color:#9ca3af;
+
+    margin-bottom:6px;
+
+}
+
+.file-id{
+
+    direction:ltr;
+
+    text-align:left;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size:11px;
+
+    color:#374151;
+
+    background:#f3f4f6;
+
+    padding:9px;
+
+    border-radius:8px;
+
+    word-break:break-all;
+
+}
+
+
+/* Copy */
+
+.copy-btn{
+
+    width:100%;
+
+    margin-top:9px;
+
+    padding:9px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#eef2ff;
+
+    color:#3730a3;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    transition:.2s;
+
+}
+
+.copy-btn:hover{
+
+    background:#e0e7ff;
+
+}
+
+
+/* Loading */
+
+.loading{
+
+    min-height:300px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#6b7280;
+
+    font-size:14px;
+
+}
+
+
+/* Empty */
+
+.empty{
+
+    padding:70px 20px;
+
+    text-align:center;
+
+    color:#9ca3af;
+
+}
+
+
+/* Toast */
+
+.toast{
+
+    position:fixed;
+
+    bottom:25px;
+
+    left:50%;
+
+    transform:
+        translateX(-50%)
+        translateY(100px);
+
+    background:#111827;
+
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    opacity:0;
+
+    transition:.3s;
+
+    z-index:9999;
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+
+/* Responsive */
+
+@media(max-width:700px){
+
+    .header{
+
+        padding:14px;
+
+        flex-wrap:wrap;
+
+    }
+
+    .header-title{
+
+        font-size:17px;
+
+    }
+
+    .container{
+
+        padding:14px;
+
+    }
+
+    .files-grid{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .preview{
+
+        height:300px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div>
+
+    <div class="header-title">
+        فایل‌های دانشجویان
+    </div>
+
+    <div class="header-info"
+         id="fileCount">
+        در حال دریافت اطلاعات...
+    </div>
+
+</div>
+
+
+<button
+    class="refresh-btn"
+    id="refreshBtn"
+    onclick="refreshData()">
+
+    🔄 بروزرسانی
+
+</button>
+
+
+</header>
+
+<main class="container">
+
+<div
+    id="filesGrid"
+    class="files-grid">
+
+    <div class="loading">
+
+        در حال دریافت اطلاعات...
+
+    </div>
+
+</div>
+
+
+</main>
+
+<div
+    id="toast"
+    class="toast">
+
+
+کپی شد
+
+
+</div>
+
+<script>
+
+
+/*************************************************
+ * فقط این آدرس را تغییر بده
+ *************************************************/
+
+const WEB_APP_URL =
+    "https://script.google.com/macros/s/AKfycbxQKkc9HfiqCuB3Wpp37aG-6RpyIMt8g7jPXVZZ5vLpcKdb95-hl_yLNJdp2MIcAwU/exec";
+
+
+/*************************************************
+ * دریافت اطلاعات
+ *************************************************/
+
+async function loadData(action = "getFiles") {
+
+    const grid =
+        document.getElementById("filesGrid");
+
+    try {
+
+        grid.innerHTML = `
+            <div class="loading">
+                در حال دریافت اطلاعات...
+            </div>
+        `;
+
+
+        const response =
+            await fetch(
+                WEB_APP_URL +
+                "?action=" +
+                encodeURIComponent(action) +
+                "&t=" +
+                Date.now()
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "خطا در ارتباط با Web App"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message ||
+                "خطای نامشخص"
+            );
+
+        }
+
+
+        renderFiles(data.files || []);
+
+    }
+
+    catch(error){
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                ❌ خطا در دریافت اطلاعات
+
+                <br><br>
+
+                ${escapeHtml(error.message)}
+
+            </div>
+
+        `;
+
+        console.error(error);
+
+    }
+
+}
+
+
+/*************************************************
+ * نمایش کارت‌ها
+ *************************************************/
+
+function renderFiles(files){
+
+    const grid =
+        document.getElementById("filesGrid");
+
+    const count =
+        document.getElementById("fileCount");
+
+
+    count.textContent =
+        `${files.length} محتوی`;
+
+
+    if(!files.length){
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                هیچ فایلی در پوشه وجود ندارد.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+        files.map(file =>
+            createCard(file)
+        ).join("");
+
+}
+
+
+/*************************************************
+ * ساخت کارت
+ *************************************************/
+
+function createCard(file){
+
+    const name =
+        escapeHtml(file.name || "بدون نام");
+
+    const id =
+        escapeHtml(file.id || "");
+
+    const mime =
+        file.mimeType || "";
+
+    const url =
+        file.url || "";
+
+
+    let preview = "";
+
+
+    /*
+     * تصویر
+     */
+
+    if(mime.startsWith("image/")){
+
+        preview = `
+
+            <div class="preview">
+
+                <img
+                    src="https://drive.google.com/thumbnail?id=${encodeURIComponent(file.id)}&sz=w1000"
+                    alt="${name}"
+                    loading="lazy"
+                    onerror="
+                        this.style.display='none';
+                        this.parentElement.innerHTML=
+                        '<div class=&quot;file-placeholder&quot;>🖼️<br>تصویر قابل نمایش نیست</div>';
+                    "
+                >
+
+            </div>
+
+        `;
+
+    }
+
+
+    /*
+     * PDF
+     */
+
+    else if(mime === "application/pdf"){
+
+        preview = `
+
+            <div class="preview">
+
+                <iframe
+                    src="https://drive.google.com/file/d/${encodeURIComponent(file.id)}/preview"
+                    loading="lazy">
+                </iframe>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /*
+     * سایر فایل‌ها
+     */
+
+    else{
+
+        preview = `
+
+            <div class="preview">
+
+                <div class="file-placeholder">
+
+                    <div class="file-icon">
+                        📄
+                    </div>
+
+                    <div>
+                        ${escapeHtml(
+                            mime || "فایل"
+                        )}
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    return `
+
+        <article class="file-card">
+
+            <div class="card-header">
+
+                <div class="file-name">
+
+                    ${name}
+
+                </div>
+
+            </div>
+
+
+            ${preview}
+
+
+            <div class="card-footer">
+
+                <div class="id-label">
+
+                    شناسه محتوی
+
+                </div>
+
+
+                <div class="file-id">
+
+                    ${id}
+
+                </div>
+
+
+                <button
+                    class="copy-btn"
+                    onclick="copyId('${escapeJs(file.id)}')">
+
+                    📋 کپی آیدی
+
+                </button>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/*************************************************
+ * بروزرسانی
+ *************************************************/
+
+async function refreshData(){
+
+    const button =
+        document.getElementById("refreshBtn");
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ در حال بروزرسانی...";
+
+
+    try{
+
+        await loadData("sync");
+
+        showToast(
+            "اطلاعات با موفقیت بروزرسانی شد"
+        );
+
+    }
+
+    finally{
+
+        button.disabled = false;
+
+        button.textContent =
+            "🔄 بروزرسانی";
+
+    }
+
+}
+
+
+/*************************************************
+ * کپی ID
+ *************************************************/
+
+async function copyId(id){
+
+    try{
+
+        await navigator.clipboard.writeText(id);
+
+        showToast(
+            "آیدی با موفقیت کپی شد"
+        );
+
+    }
+
+    catch(error){
+
+        const textarea =
+            document.createElement("textarea");
+
+        textarea.value = id;
+
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        textarea.remove();
+
+        showToast(
+            "آیدی با موفقیت کپی شد"
+        );
+
+    }
+
+}
+
+
+/*************************************************
+ * Toast
+ *************************************************/
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },2000);
+
+}
+
+
+/*************************************************
+ * جلوگیری از XSS
+ *************************************************/
+
+function escapeHtml(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeJs(value){
+
+    return String(value || "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,'\\"')
+        .replace(/\n/g,"\\n")
+        .replace(/\r/g,"\\r");
+
+}
+
+
+/*************************************************
+ * شروع
+ *************************************************/
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        loadData("sync");
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
